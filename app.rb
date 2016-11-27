@@ -11,6 +11,10 @@ get '/' do
     Uzser.find(8).name
 end
 
+get '/bb' do
+    "aaasss"
+end
+
 get '/aaa' do
     erb :index
 end

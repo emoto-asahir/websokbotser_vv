@@ -1,9 +1,13 @@
 require 'bundler/setup'
 require 'sinatra'
 require 'active_record'
-class Student < ActiveRecord::Base
+
+ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'])
+
+class  Uxser < ActiveRecord::Base
     
 end
+
 get '/' do
-    "aaaaaa"
+    Uxser.find(8)
 end

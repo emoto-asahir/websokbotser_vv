@@ -4,11 +4,11 @@ require 'active_record'
 
 ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'])
 
-class Uzser < ActiveRecord::Base
+class Uxser < ActiveRecord::Base
 end
 
 get '/' do
-    Uzser.find(8).name
+    Uxser.find(8).name
 end
 
 get '/bb' do

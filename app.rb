@@ -9,5 +9,5 @@ class  Uxser < ActiveRecord::Base
 end
 
 get '/' do
-    Uxser.find(8)
+    Uxser.find(8).name
 end

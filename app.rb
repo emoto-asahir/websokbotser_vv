@@ -4,10 +4,13 @@ require 'active_record'
 
 ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'])
 
-class  Uxser < ActiveRecord::Base
-    
+class Uzser < ActiveRecord::Base
 end
 
 get '/' do
-    Uxser.find(8).name
+    Uzser.find(8).name
+end
+
+get '/aaa' do
+    erb :index
 end

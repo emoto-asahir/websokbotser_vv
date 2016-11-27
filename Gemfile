@@ -4,6 +4,8 @@ gem 'sinatra'
 gem "activerecord", "< 5.0.0"
 gem 'sinatra-activerecord'
 gem 'rake'
+gem "faye-websocket"
+gem "puma"
 
 group :development, :test do
   gem 'foreman'

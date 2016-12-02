@@ -1,6 +1,6 @@
 require 'faye/websocket'
 require 'json'
-
+require './app'
 
 module Websockettest2
   class Backend
@@ -42,7 +42,7 @@ module Websockettest2
           msghash = nil
           p "xxxxx"
           output = {}
-          output = { "text" => "vvvvvv" , "type" => "message" , "success" => false }
+          output = { "text" => Uxser.find(8).name , "type" => "message" , "success" => false }
           
           msghash = JSON.parse(event.data) rescue nil
           p "vvvv"

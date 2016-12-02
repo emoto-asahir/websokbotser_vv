@@ -74,7 +74,9 @@ module Websockettest2
             case msghash["text"]
             when /.*ping.*/
               output["text"] = "pong"
-              
+            when /.*tarot.*/
+              tarot = Tarot.find(Tarot.pluck(:id).sample)
+              output["text"] = tarot.name
             else
               output["text"] = "just mentioned"
             end

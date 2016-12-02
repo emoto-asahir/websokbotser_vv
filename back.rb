@@ -29,41 +29,28 @@ module Websockettest2
           p json
           JSON.parse(json)
           
-          p "www"
           
           vvv = JSON.parse("sssaaaa") rescue nil
           
-          p vvv
           
           vvv = JSON.parse(event.data) rescue nil
           
-          p vvv
           
           msghash = nil
-          p "xxxxx"
           output = {}
           output = { "text" => "kkkkk" , "type" => "message" , "success" => false }
           
           msghash = JSON.parse(event.data) rescue nil
-          p "vvvv"
+          
           p msghash
           if msghash
-            p msghash["text"]
-            p "aaghh"
-            msghash["text"] =~ /^(@bot|bot(:|\s|\p{blank}))/
-            p "vvvvvv"
-            p (msghash["text"] =~ /^(@bot|bot(:|\s|\p{blank}))/)
-            p "qqqqq"
             isment = (msghash["text"] =~ /^(@bot|bot(:|\s|\p{blank}))/)
-            p isment
-            p "wwwwuuuu"
             output["text"] = msghash["text"]
             output["success"] = true
           end
           
-          p "ffff"
           str = JSON.generate(output)
-          p "sswww"
+          
           @clients.each { |client| 
           
             client.send str
@@ -76,7 +63,15 @@ module Websockettest2
               output["text"] = "pong"
             when /.*tarot.*/
               tarot = Tarot.find(Tarot.pluck(:id).sample)
-              output["text"] = tarot.name
+              itinum = [1,0].sample
+              if itinum == 0
+                iti = "正位置"
+                coment = tarot.content
+              else
+                iti = "逆位置"
+                coment = tarot.content2
+              end
+              output["text"] = tarot.name + ":" + "iti" + ":" + coment
             else
               output["text"] = "just mentioned"
             end

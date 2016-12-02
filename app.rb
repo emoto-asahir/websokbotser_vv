@@ -13,7 +13,7 @@ end
 
 get '/' do
     tarot = Tarot.find(Tarot.pluck(:id).sample)
-    tarot.name
+    tarot.name + ":" + tarot.content + ":" + tarot.content2
 end
 
 get '/bb' do

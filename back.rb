@@ -1,6 +1,7 @@
 require 'faye/websocket'
 require 'json'
 
+
 module Websockettest2
   class Backend
     KEEPALIVE_TIME = 15
@@ -19,20 +20,53 @@ module Websockettest2
           p [:open, ws.object_id]
           @clients << ws
           # ws.send({ you: ws.object_id }.to_json)
-          @clients.each do |client|
-            client.send({ count: @clients.size }.to_json)
-          end
-          @logs.each do |log|
-            p [:logs, log]
-            ws.send(log)
-          end
-
         end
 
         ws.on :message do |event|
           p [:message, event.data]
+          mystr = event.data
+          json = {:key_a => "value2", :key_b => "value3"}.to_json
+          p json
+          JSON.parse(json)
+          
+          p "www"
+          
+          vvv = JSON.parse("sssaaaa") rescue nil
+          
+          p vvv
+          
+          vvv = JSON.parse(event.data) rescue nil
+          
+          p vvv
+          
+          msghash = nil
+          p "xxxxx"
+          output = {}
+          output = { "text" => "vvvvvv" , "type" => "message" , "success" => false }
+          
+          msghash = JSON.parse(event.data) rescue nil
+          p "vvvv"
+          p msghash
+          if msghash
+            p msghash["text"]
+            p "aaghh"
+            msghash["text"] =~ /^(@bot|bot(:|\s|\p{blank}))/
+            p "vvvvvv"
+            p (msghash["text"] =~ /^(@bot|bot(:|\s|\p{blank}))/)
+            p "qqqqq"
+            isment = (msghash["text"] =~ /^(@bot|bot(:|\s|\p{blank}))/)
+            p isment
+            p "wwwwuuuu"
+            output["text"] = msghash["text"]
+            output["success"] = true
+          end
+          
+          p "ffff"
+          str = JSON.generate(output)
+          p "sswww"
           @clients.each { |client| 
-            client.send event.data
+          
+            client.send str
           }
           @logs.push event.data
           @logs.shift if @logs.size > MAX_LOG_SIZE
@@ -41,9 +75,6 @@ module Websockettest2
         ws.on :close do |event|
           p [:close, ws.object_id, event.code]
           @clients.delete(ws)
-          @clients.each do |client|
-            client.send({ count: @clients.size }.to_json)
-          end
           ws = nil
         end
         ws.rack_response

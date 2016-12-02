@@ -12,7 +12,8 @@ class Tarot < ActiveRecord::Base
 end
 
 get '/' do
-    Uxser.find(8).name
+    tarot = Tarot.find(Tarot.pluck(:id).sample)
+    tarot.name
 end
 
 get '/bb' do

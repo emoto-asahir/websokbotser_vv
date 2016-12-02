@@ -71,7 +71,7 @@ module Websockettest2
                 iti = "逆位置"
                 coment = tarot.content2
               end
-              output["text"] = tarot.name + ":" + "iti" + ":" + coment
+              output["text"] = "カード名" + tarot.name + ":" + iti + ":" + coment
             else
               output["text"] = "just mentioned"
             end

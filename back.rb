@@ -42,7 +42,7 @@ module Websockettest2
           msghash = nil
           p "xxxxx"
           output = {}
-          output = { "text" => Uxser.find(8).name , "type" => "message" , "success" => false }
+          output = { "text" => "kkkkk" , "type" => "message" , "success" => false }
           
           msghash = JSON.parse(event.data) rescue nil
           p "vvvv"
@@ -68,6 +68,20 @@ module Websockettest2
           
             client.send str
           }
+          
+          if isment
+            output["type"] = "bot"
+            case msghash["text"]
+            when /.*ping.*/
+              output["text"] = "pong"
+              
+            else
+              output["text"] = "just mentioned"
+            end
+                
+            str = JSON.generate(output)
+            ws.send str
+          end
           @logs.push event.data
           @logs.shift if @logs.size > MAX_LOG_SIZE
         end

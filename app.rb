@@ -2,7 +2,10 @@ require 'bundler/setup'
 require 'sinatra'
 require 'active_record'
 
-ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'])
+ActiveRecord::Base.establish_connection(
+  adapter: 'sqlite3',
+  database: 'meido.sqlite3'
+)
 
 
 class Uxser < ActiveRecord::Base

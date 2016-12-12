@@ -7,11 +7,9 @@ function appendMessage (name, text) {
 function sendMessage() {
   var name = $('#username').val();
   var text = $('#msgbody').val();
-  if(name && text) {
-    var data = JSON.stringify({ name: name, body: text });
-    ws.send(data);
-    $('#msgbody').val('');    
-  }
+  ws.send("sssssssssssssssssssssssss");
+  $('#msgbody').val('');    
+  
 }
 
 $('#msgbody').keypress(function (e) {

@@ -2,3 +2,5 @@ ActiveRecord::Base.establish_connection(
  adapter: 'sqlite3',
  database: 'meido.sqlite3'
 )
+
+RACK_ENV=production rackup config.ru -p $PORT -o $IP
